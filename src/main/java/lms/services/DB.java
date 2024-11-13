@@ -12,6 +12,7 @@ public class DB {
     private final List<Loan> loans = new ArrayList<>();
 
     private DB() {
+        initializeSampleData();
         loadData();
     }
 
@@ -20,6 +21,19 @@ public class DB {
             instance = new DB();
         }
         return instance;
+    }
+
+    private void initializeSampleData() {
+
+        if (books.isEmpty()) {
+            Book book1 = new Book("Book A", "Author A", "123456", true, "Fiction");
+            Book book2 = new Book("Book B", "Author B", "789012", true, "Non-Fiction");
+            Book book3 = new Book("Book C", "Author C", "345678", true, "Reference");
+
+            books.add(book1);
+            books.add(book2);
+            books.add(book3);
+        }
     }
 
     private void loadData() {

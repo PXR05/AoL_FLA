@@ -20,6 +20,9 @@ public class LoginScreen extends BaseScreen {
         Button loginButton = new Button("Login");
         loginButton.setOnAction(e -> handleLogin(usernameField.getText(), passwordField.getText()));
         
+        Hyperlink registerLink = new Hyperlink("Don't have an account? Register here");
+        registerLink.setOnAction(e -> screenManager.showRegisterScreen());
+        
         Label header = new Label("LMS");
         header.styleProperty().set("-fx-font-size: 16px; -fx-font-weight: bold;");
         
@@ -28,7 +31,8 @@ public class LoginScreen extends BaseScreen {
                 new Label("Login"),
                 usernameField,
                 passwordField,
-                loginButton
+                loginButton,
+                registerLink
         );
         return loginRoot;
     }

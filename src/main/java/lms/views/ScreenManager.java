@@ -37,6 +37,10 @@ public class ScreenManager {
     public void showLoginScreen() {
         ScreenFactory.createScreen("login").show();
     }
+    
+    public void showRegisterScreen() {
+        ScreenFactory.createScreen("register").show();
+    }
 
     public void showLibrarianScreen() {
         ScreenFactory.createScreen("librarian").show();

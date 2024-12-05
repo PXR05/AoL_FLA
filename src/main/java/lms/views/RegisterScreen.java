@@ -6,6 +6,8 @@ import javafx.scene.layout.*;
 import lms.factories.PersonFactory;
 import lms.models.*;
 
+import java.util.List;
+
 public class RegisterScreen extends BaseScreen {
     @Override
     protected Region createContent() {
@@ -38,10 +40,11 @@ public class RegisterScreen extends BaseScreen {
     }
     
     private void handleRegister(String username, String password) {
-        User user = library.getUserController().find(username);
+        User user = (User) library.getUserController().login(username, password);
         if (user == null) {
-            // TODO: ADD USER TO DB
-            user = (User) PersonFactory.createPerson("user", username, username);
+            List<Person> users = library.getUserController().getAll();
+            String id = "U" + users.size() + 1;
+            user = (User) PersonFactory.createPerson(id,"user", username, username);
             library.getUserController().add(user);
         }
         screenManager.showLoginScreen();

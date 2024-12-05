@@ -5,9 +5,13 @@ import lms.Library;
 public class Librarian extends Person {
     private final Library library;
     
-    public Librarian(String id, String name, Library library) {
-        super(id, name);
-        this.library = library;
+    public Librarian() {
+        this.library = Library.getInstance();
+    }
+    
+    public Librarian(String id, String name, String password) {
+        super(id, name, password);
+        this.library = Library.getInstance();
     }
     
     public void addNewBook(Book book) {

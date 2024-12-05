@@ -6,6 +6,8 @@ import javafx.scene.layout.*;
 import lms.factories.PersonFactory;
 import lms.models.*;
 
+import java.util.Objects;
+
 public class LoginScreen extends BaseScreen {
     @Override
     protected Region createContent() {
@@ -38,17 +40,20 @@ public class LoginScreen extends BaseScreen {
     }
 
     private void handleLogin(String username, String password) {
-        if (username.equals("admin") && password.equals("admin")) {
-            screenManager.setCurrentUser(PersonFactory.createPerson("librarian", "admin", "admin"));
-            screenManager.showLibrarianScreen();
-        } else {
-            User user = library.getUserController().find(username);
-            if (user == null) {
-                user = (User) PersonFactory.createPerson("user", username, username);
-                library.getUserController().add(user);
+        Person user = library.getUserController().login(username, password);
+        if (user != null) {
+            if (Objects.equals(user.getId(), "ADMIN")) {
+                screenManager.setCurrentUser(PersonFactory.createPerson("ADMIN", "admin", "admin", "admin"));
+                screenManager.showLibrarianScreen();
+            } else {
+                screenManager.setCurrentUser(user);
+                screenManager.showUserScreen();
             }
-            screenManager.setCurrentUser(user);
-            screenManager.showUserScreen();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Invalid username or password");
+            alert.showAndWait();
         }
     }
 

@@ -5,6 +5,7 @@ module lms.lms {
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;
     requires transitive javafx.graphics;
+    requires java.sql;
     
     exports lms;
     opens lms to javafx.fxml;

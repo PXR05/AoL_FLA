@@ -1,29 +1,29 @@
 package lms.controllers;
 
 import lms.models.Book;
-import lms.services.DB;
 
 import java.util.List;
 
 public class BookController extends Controller<Book> {
-    private final DB db = DB.getInstance();
-
+    private Book model;
+    
+    public BookController() {
+        this.model = new Book();
+    }
+    
     public void add(Book book) {
-        db.addBook(book);
+        book.save();
     }
 
     public void remove(Book book) {
-        db.removeBook(book);
+        book.remove();
     }
 
     public Book find(String isbn) {
-        return db.getBooks().stream()
-                .filter(b -> b.getIsbn().equals(isbn))
-                .findFirst()
-                .orElse(null);
+        return model.find(isbn);
     }
 
     public List<Book> getAll() {
-        return db.getBooks();
+        return model.getAll();
     }
 }

@@ -109,7 +109,7 @@ public class LibrarianScreen extends BaseScreen {
         
         Book newBook = new Book(fields[1].getText(), fields[2].getText(), 
                                fields[0].getText(), true, fields[3].getText());
-        ((Librarian)screenManager.getCurrentUser()).addNewBook(newBook);
+        library.getBookController().add(newBook);
         bookTableView.getItems().setAll(library.getBookController().getAll());
         
         for (TextField field : fields) {
@@ -120,7 +120,7 @@ public class LibrarianScreen extends BaseScreen {
     private void handleRemoveBook() {
         Book selected = bookTableView.getSelectionModel().getSelectedItem();
         if (selected != null) {
-            ((Librarian)screenManager.getCurrentUser()).removeBook(selected);
+            library.getBookController().remove(selected);
             bookTableView.getItems().setAll(library.getBookController().getAll());
         }
     }

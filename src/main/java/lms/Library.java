@@ -6,14 +6,14 @@ import lms.services.DB;
 public class Library {
     private static Library instance;
     private final BookController bookController;
-    private final UserController userController;
+    private final PersonController personController;
     private final LoanController loanController;
     private final DB db;
 
     private Library() {
         db = DB.getInstance();
         bookController = new BookController();
-        userController = new UserController();
+        personController = new PersonController();
         loanController = new LoanController();
     }
 
@@ -24,16 +24,12 @@ public class Library {
         return instance;
     }
 
-    public void saveData() {
-        db.saveData();
-    }
-
     public BookController getBookController() {
         return bookController;
     }
 
-    public UserController getUserController() {
-        return userController;
+    public PersonController getUserController() {
+        return personController;
     }
 
     public LoanController getLoanController() {

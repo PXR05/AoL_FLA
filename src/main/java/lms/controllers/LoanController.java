@@ -5,7 +5,7 @@ import lms.services.DB;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class LoanController extends Controller<Loan> {
+public class LoanController {
     private final Loan model = new Loan();
 
     public void add(Loan loan) {
@@ -26,5 +26,9 @@ public class LoanController extends Controller<Loan> {
 
     public List<Loan> getActiveLoans() {
         return model.getAll("0");
+    }
+    
+    public List<Loan> getInactiveLoans() {
+        return model.getAll("1");
     }
 }

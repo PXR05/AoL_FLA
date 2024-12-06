@@ -6,7 +6,7 @@ import lms.services.DB;
 
 import java.util.List;
 
-public class PersonController extends Controller<Person> {
+public class PersonController {
     private final Person model = new User();
     
     public void add(Person user) {

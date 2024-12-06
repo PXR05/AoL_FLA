@@ -1,20 +1,21 @@
 package lms;
 
 import lms.controllers.*;
-import lms.services.DB;
 
 public class Library {
     private static Library instance;
     private final BookController bookController;
     private final PersonController personController;
     private final LoanController loanController;
-    private final DB db;
+    private final UserController userController;
+    private final LibrarianController librarianController;
 
     private Library() {
-        db = DB.getInstance();
         bookController = new BookController();
         personController = new PersonController();
         loanController = new LoanController();
+        userController = new UserController();
+        librarianController = new LibrarianController();
     }
 
     public static Library getInstance() {
@@ -28,11 +29,19 @@ public class Library {
         return bookController;
     }
 
-    public PersonController getUserController() {
+    public PersonController getPersonController() {
         return personController;
     }
 
     public LoanController getLoanController() {
         return loanController;
+    }
+    
+    public UserController getUserController() {
+        return userController;
+    }
+    
+    public LibrarianController getLibrarianController() {
+        return librarianController;
     }
 }

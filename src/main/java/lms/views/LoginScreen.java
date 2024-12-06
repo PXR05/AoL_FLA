@@ -40,7 +40,7 @@ public class LoginScreen extends BaseScreen {
     }
 
     private void handleLogin(String username, String password) {
-        Person user = library.getUserController().login(username, password);
+        Person user = library.getPersonController().login(username, password);
         if (user != null) {
             if (Objects.equals(user.getId(), "ADMIN")) {
                 screenManager.setCurrentUser(PersonFactory.createPerson("ADMIN", "admin", "admin", "admin"));

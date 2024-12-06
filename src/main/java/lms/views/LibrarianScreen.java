@@ -93,10 +93,18 @@ public class LibrarianScreen extends BaseScreen {
         Label loans = new Label("Active Loans:");
         loans.styleProperty().set("-fx-font-weight: bold;");
         
+        Label pastLoans = new Label("Past Loans:");
+        pastLoans.styleProperty().set("-fx-font-weight: bold;");
+        
+        TableView<Loan> pastLoanTableView = UIComponents.createLoanTableView();
+        pastLoanTableView.getItems().addAll(library.getLoanController().getInactiveLoans());
+        
         pane.getChildren().addAll(
             header,
             loans, loanTableView,
-            returnButton
+            returnButton,
+            new Separator(),
+            pastLoans, pastLoanTableView
         );
         return pane;
     }
@@ -109,7 +117,7 @@ public class LibrarianScreen extends BaseScreen {
         
         Book newBook = new Book(fields[1].getText(), fields[2].getText(), 
                                fields[0].getText(), true, fields[3].getText());
-        library.getBookController().add(newBook);
+        library.getLibrarianController().addNewBook(newBook);
         bookTableView.getItems().setAll(library.getBookController().getAll());
         
         for (TextField field : fields) {
@@ -120,7 +128,7 @@ public class LibrarianScreen extends BaseScreen {
     private void handleRemoveBook() {
         Book selected = bookTableView.getSelectionModel().getSelectedItem();
         if (selected != null) {
-            library.getBookController().remove(selected);
+            library.getLibrarianController().removeBook(selected);
             bookTableView.getItems().setAll(library.getBookController().getAll());
         }
     }

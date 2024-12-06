@@ -51,7 +51,7 @@ public class UserScreen extends BaseScreen {
     private void handleBorrow() {
         Book selected = availableBooksTable.getSelectionModel().getSelectedItem();
         if (selected != null && selected.isAvailable()) {
-            ((User)screenManager.getCurrentUser()).borrowBook(selected);
+            library.getUserController().borrowBook((User)screenManager.getCurrentUser(), selected);
             availableBooksTable.getItems().setAll(library.getBookController().getAll());
             borrowedBooksTable.getItems().setAll(((User)screenManager.getCurrentUser()).getBorrowedBooks());
         }

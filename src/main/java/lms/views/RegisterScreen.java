@@ -40,12 +40,12 @@ public class RegisterScreen extends BaseScreen {
     }
     
     private void handleRegister(String username, String password) {
-        User user = (User) library.getUserController().login(username, password);
+        User user = (User) library.getPersonController().login(username, password);
         if (user == null) {
-            List<Person> users = library.getUserController().getAll();
+            List<Person> users = library.getPersonController().getAll();
             String id = "U" + users.size() + 1;
             user = (User) PersonFactory.createPerson(id,"user", username, username);
-            library.getUserController().add(user);
+            library.getPersonController().add(user);
         }
         screenManager.showLoginScreen();
     }

@@ -4,7 +4,7 @@ import lms.models.Book;
 
 import java.util.List;
 
-public class BookController extends Controller<Book> {
+public class BookController {
     private Book model;
     
     public BookController() {

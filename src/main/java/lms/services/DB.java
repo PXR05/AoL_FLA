@@ -38,7 +38,7 @@ public class DB {
                     "due_date TEXT, " +
                     "return_date TEXT, " +
                     "returned INTEGER, " +
-                    "FOREIGN KEY(user_id) REFERENCES users(id)," +
+                    "FOREIGN KEY(user_id) REFERENCES users(id), " +
                     "FOREIGN KEY(book_isbn) REFERENCES books(isbn))");
             seed();
         } catch (Exception e) {
